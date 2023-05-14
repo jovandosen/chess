@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#chess-game-main-container {
+    width: 800px;
+    border: 1px solid black;
+    height: 800px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.board-block {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+}
