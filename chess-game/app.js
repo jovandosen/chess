@@ -8,20 +8,34 @@ var numbers = [8, 7, 6, 5, 4, 3, 2, 1];
 function createBoardBlock(color, x, y) {
     blockStartingId += 1;
 
+    var fieldX = letters[x - 1];
+    var fieldY = numbers[y - 1];
+
     var block = document.createElement("div");
     block.setAttribute("id", blockStartingId + "-block");
     block.classList.add("board-block");
-    block.classList.add(numbers[y - 1] + "-" + letters[x - 1]);
-
-    var img = document.createElement("img");
-    img.setAttribute("id", blockStartingId + "-img");
-    block.appendChild(img);
-
-    img.src = "images/king-light.png";
+    block.classList.add(fieldY + "-" + fieldX);
 
     if(color == "#bf8040") {
         block.style.backgroundColor = color;
-        img.src = "images/king-dark.png";
+    }
+
+    if(y == 1 || y == 2 || y == 7 || y == 8) {
+
+        var img = document.createElement("img");
+        img.setAttribute("id", blockStartingId + "-img");
+        block.appendChild(img);
+
+        img.src = "images/king-light.png";
+
+        if(y == 2) {
+            img.src = "images/pawn-dark.png";
+        }
+
+        if(y == 7) {
+            img.src = "images/pawn-light.png";
+        }
+
     }
 
     chessMainContainer.appendChild(block);
