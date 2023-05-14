@@ -26,14 +26,52 @@ function createBoardBlock(color, x, y) {
         img.setAttribute("id", blockStartingId + "-img");
         block.appendChild(img);
 
-        img.src = "images/king-light.png";
-
         if(y == 2) {
             img.src = "images/pawn-dark.png";
         }
 
         if(y == 7) {
             img.src = "images/pawn-light.png";
+        }
+
+        if(block.classList.contains("8-a") || block.classList.contains("8-h")) {
+            img.src = "images/rook-dark.png";
+        }
+
+        if(block.classList.contains("8-b") || block.classList.contains("8-g")) {
+            img.src = "images/knight-dark.png";
+        }
+
+        if(block.classList.contains("8-c") || block.classList.contains("8-f")) {
+            img.src = "images/bishop-dark.png";
+        }
+
+        if(block.classList.contains("8-d")) {
+            img.src = "images/queen-dark.png";
+        }
+
+        if(block.classList.contains("8-e")) {
+            img.src = "images/king-dark.png";
+        }
+
+        if(block.classList.contains("1-a") || block.classList.contains("1-h")) {
+            img.src = "images/rook-light.png";
+        }
+
+        if(block.classList.contains("1-b") || block.classList.contains("1-g")) {
+            img.src = "images/knight-light.png";
+        }
+
+        if(block.classList.contains("1-c") || block.classList.contains("1-f")) {
+            img.src = "images/bishop-light.png";
+        }
+
+        if(block.classList.contains("1-d")) {
+            img.src = "images/queen-light.png";
+        }
+
+        if(block.classList.contains("1-e")) {
+            img.src = "images/king-light.png";
         }
 
     }
