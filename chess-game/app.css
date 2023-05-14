@@ -16,6 +16,10 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    background-repeat: no-repeat;
-    background-position: center;
+}
+
+.board-block img {
+    width: 70px;
+    display: block;
+    margin: 15px;
 }

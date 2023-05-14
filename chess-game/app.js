@@ -2,18 +2,26 @@ var chessMainContainer = document.getElementById("chess-game-main-container");
 
 var blockStartingId = 0;
 
-function createBoardBlock(color) {
-    var block = document.createElement("div");
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+var numbers = [8, 7, 6, 5, 4, 3, 2, 1];
 
+function createBoardBlock(color, x, y) {
     blockStartingId += 1;
+
+    var block = document.createElement("div");
     block.setAttribute("id", blockStartingId + "-block");
     block.classList.add("board-block");
+    block.classList.add(numbers[y - 1] + "-" + letters[x - 1]);
 
-    block.style.backgroundImage = "url('images/king-light.png')";
+    var img = document.createElement("img");
+    img.setAttribute("id", blockStartingId + "-img");
+    block.appendChild(img);
 
-    if(color == "green") {
+    img.src = "images/king-light.png";
+
+    if(color == "#bf8040") {
         block.style.backgroundColor = color;
-        block.style.backgroundImage = "url('images/king-dark.png')";
+        img.src = "images/king-dark.png";
     }
 
     chessMainContainer.appendChild(block);
@@ -32,19 +40,19 @@ function createChessBoard() {
     for(var i = 1; i <= 8; i++) {
 
         if(i % 2 == 0) {
-            colorOne = "green";
+            colorOne = "#bf8040";
             colorTwo = "white";
         } else {
             colorOne = "white";
-            colorTwo = "green";
+            colorTwo = "#bf8040";
         }
 
         for(var j = 1; j <= 8; j++) {
 
             if(j % 2 == 0) {
-                blockEl = createBoardBlock(colorTwo);
+                blockEl = createBoardBlock(colorTwo, i, j);
             } else {
-                blockEl = createBoardBlock(colorOne);
+                blockEl = createBoardBlock(colorOne, i, j);
             }
 
             blockEl.style.top = top + "px";
