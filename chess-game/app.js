@@ -12,9 +12,19 @@ function createBoardBlock(color, x, y) {
     var fieldY = numbers[y - 1];
 
     var block = document.createElement("div");
+
     block.setAttribute("id", blockStartingId + "-block");
+
     block.classList.add("board-block");
     block.classList.add(fieldY + "-" + fieldX);
+
+    block.addEventListener("drop", function() {
+        drop(event);
+    });
+
+    block.addEventListener("dragover", function() {
+        allowDrop(event);
+    });
 
     if(color == "#bf8040") {
         block.style.backgroundColor = color;
@@ -23,7 +33,14 @@ function createBoardBlock(color, x, y) {
     if(y == 1 || y == 2 || y == 7 || y == 8) {
 
         var img = document.createElement("img");
+
         img.setAttribute("id", blockStartingId + "-img");
+        img.setAttribute("draggable", true);
+
+        img.addEventListener("dragstart", function() {
+            drag(event);
+        });
+
         block.appendChild(img);
 
         if(y == 2) {
@@ -124,3 +141,17 @@ function createChessBoard() {
 }
 
 createChessBoard();
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
