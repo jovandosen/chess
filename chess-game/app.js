@@ -45,50 +45,62 @@ function createBoardBlock(color, x, y) {
 
         if(y == 2) {
             img.src = "images/pawn-dark.png";
+            setFigureTypeAndColor(img, "pawn", "dark");
         }
 
         if(y == 7) {
             img.src = "images/pawn-light.png";
+            setFigureTypeAndColor(img, "pawn", "light");
         }
 
         if(block.classList.contains("8-a") || block.classList.contains("8-h")) {
             img.src = "images/rook-dark.png";
+            setFigureTypeAndColor(img, "rook", "dark");
         }
 
         if(block.classList.contains("8-b") || block.classList.contains("8-g")) {
             img.src = "images/knight-dark.png";
+            setFigureTypeAndColor(img, "knight", "dark");
         }
 
         if(block.classList.contains("8-c") || block.classList.contains("8-f")) {
             img.src = "images/bishop-dark.png";
+            setFigureTypeAndColor(img, "bishop", "dark");
         }
 
         if(block.classList.contains("8-d")) {
             img.src = "images/queen-dark.png";
+            setFigureTypeAndColor(img, "queen", "dark");
         }
 
         if(block.classList.contains("8-e")) {
             img.src = "images/king-dark.png";
+            setFigureTypeAndColor(img, "king", "dark");
         }
 
         if(block.classList.contains("1-a") || block.classList.contains("1-h")) {
             img.src = "images/rook-light.png";
+            setFigureTypeAndColor(img, "rook", "light");
         }
 
         if(block.classList.contains("1-b") || block.classList.contains("1-g")) {
             img.src = "images/knight-light.png";
+            setFigureTypeAndColor(img, "knight", "light");
         }
 
         if(block.classList.contains("1-c") || block.classList.contains("1-f")) {
             img.src = "images/bishop-light.png";
+            setFigureTypeAndColor(img, "bishop", "light");
         }
 
         if(block.classList.contains("1-d")) {
             img.src = "images/queen-light.png";
+            setFigureTypeAndColor(img, "queen", "light");
         }
 
         if(block.classList.contains("1-e")) {
             img.src = "images/king-light.png";
+            setFigureTypeAndColor(img, "king", "light");
         }
 
     }
@@ -148,10 +160,26 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
+    handleFigureAction(ev);
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+}
+
+function setFigureTypeAndColor(img, type, color) {
+    img.setAttribute("figure-type", type);
+    img.setAttribute("figure-color", color);
+}
+
+function handleFigureAction(el) {
+    var figureId = el.target.getAttribute("id");
+    var figureType = el.target.getAttribute("figure-type");
+    var figureColor = el.target.getAttribute("figure-color");
+
+    console.log(figureId);
+    console.log(figureType);
+    console.log(figureColor);
 }
